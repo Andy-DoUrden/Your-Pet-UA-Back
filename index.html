@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to API</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fdd3ad;
+        height: 100vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .animate-character {
+        opacity: 0;
+        visibility: hidden;
+        text-transform: uppercase;
+        background-image: linear-gradient(
+          -225deg,
+          #231557 0%,
+          #44107a 29%,
+          #ff1361 67%,
+          #fff800 100%
+        );
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: transition 10s forwards, textclip 3s linear infinite;
+        display: inline-block;
+        font-size: 120px;
+        font-family: "circular";
+        margin: 0;
+        margin-left: 44px;
+      }
+
+      @keyframes textclip {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      @keyframes transition {
+        to {
+          opacity: 100%;
+          visibility: visible;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .animate-character {
+          font-size: 80px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .animate-character {
+          font-size: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="animate-character">
+      Welcome to API! Please head to the /api-docs route
+    </h1>
+  </body>
+</html>
