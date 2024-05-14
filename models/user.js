@@ -6,25 +6,25 @@ function createUserModel() {
     name: {
       type: String,
       required: [true, "Name is required"],
-      minlength: [2, "Name must be at least 2 characters long"],
-      maxlength: [16, "Name can be at most 16 characters long"],
+      minlength: [2, "Ім'я має містити мінімум 2 символи"],
+      maxlength: [16, "Ім'я має містити максимум 16 символів"],
       validate: {
-        validator: /^[a-zA-Z\s]+$/,
-        message: "Name must contain only letters and spaces",
+        validator: /^([А-ЩЬЮЯҐЄIЇІІа-щьюяґєіїьі]+\s?){1,}$/iu,
+        message: "Ім'я має містити лише літери та пробіли",
       },
     },
     email: {
       type: String,
-      required: [true, "Email is required"],
+      required: [true, "Імейл обов'язковий"],
       unique: true,
       validate: {
         validator: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-        message: "Invalid email format",
+        message: "Не правильний формат імейлу",
       },
     },
     password: {
       type: String,
-      required: [true, "Set password for user"],
+      required: [true, "Вкажіть пароль"],
     },
     avatarURL: String,
     date: String,
