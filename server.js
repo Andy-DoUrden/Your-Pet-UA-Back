@@ -12,7 +12,7 @@ mongoose
   .then(() => {
     app.listen(PORT, () => {
       console.log(
-        `\n\x1b[32mSuccesful\x1b[0m database connection. Use our API on \x1b[36mhttps://goit-team-03-node.onrender.com/`
+        `\n\x1b[32mSuccesful\x1b[0m database connection. Use our API on \x1b[36mhttps://your-pet-ua-back.onrender.com/`
       );
     });
   })

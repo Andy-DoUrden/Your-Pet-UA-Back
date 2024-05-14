@@ -6,11 +6,11 @@ const convertAge = require("../../helpers/convertAge");
 const cloudinary = require("cloudinary").v2;
 const { CLOUDINARY_SECRET_KEY } = process.env;
 
-cloudinary.config({
-  cloud_name: "dw6lgfflx",
-  api_key: "679261754518422",
-  api_secret: CLOUDINARY_SECRET_KEY,
-});
+// cloudinary.config({
+//   cloud_name: "dnx34xtrk",
+//   api_key: "294481349432578",
+//   api_secret: CLOUDINARY_SECRET_KEY,
+// });
 
 const addNotice = async (req, res, next) => {
   const { _id: owner } = req.user;
@@ -22,6 +22,12 @@ const addNotice = async (req, res, next) => {
   if (req.body.category !== "sell" && req.body.price) {
     throw requestError(404, "You can't add price to this category");
   }
+
+  cloudinary.config({
+    cloud_name: "dnx34xtrk",
+    api_key: "294481349432578",
+    api_secret: CLOUDINARY_SECRET_KEY,
+  });
 
   const age = convertAge(date);
   let originalNameNoExtension;

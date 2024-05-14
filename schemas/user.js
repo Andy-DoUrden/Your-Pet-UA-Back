@@ -19,14 +19,14 @@ const registerSchema = Joi.object({
 const loginSchema = Joi.object({
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } })
-    .message("Invalid Email. Please provide a valid email ending .com, .net or .org")
+    .message("Недійсна електронна адреса. Укажіть дійсну електронну адресу із розширенням .com, .net або .org")
     .required(),
   password: Joi.string()
     .min(6)
     .max(16)
     .pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/)
     .message(
-      "Invalid password format. Please make sure your password: is at least 6 characters long, is at most 16 characters long, - contains at least one digit, contains at least one lowercase letter, contains at least one uppercase letter."
+      "Недійсний формат пароля. Будь ласка, переконайтеся, що ваш пароль: містить принаймні 6 символів, не більше 16 символів, - містить принаймні одну цифру, містить принаймні одну малу літеру, містить принаймні одну велику літеру."
     )
     .required(),
 });
@@ -36,20 +36,20 @@ const usersSchema = Joi.object({
   name: Joi.string().min(2).max(16),
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } })
-    .message("Invalid Email. Please provide a valid email ending .com, .net or .org"),
+    .message("Недійсна електронна адреса. Укажіть дійсну електронну адресу із розширенням .com, .net або .org"),
   date: Joi.string()
     .pattern(/^\d{2}-\d{2}-\d{4}$/)
-    .message("Date is required. Invalid date of birth format. Please enter a valid date in the format dd-mm-yyyy.")
+    .message("Необхідно вказати дату. Недійсний формат дати народження. Введіть дійсну дату у форматі дд-мм-рррр.")
     .required(),
   phone: Joi.string()
     .pattern(/^\+\d{12}$/)
-    .message("Please enter valid phone +000000000000")
+    .message("Введіть дійсний телефон +000000000000")
     .required(),
   city: Joi.string()
-    .pattern(/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/)
+    .pattern(/^[а-яА-Я]+(?:[\s-][а-яА-Я]+)*$/)
     .messages({
-      "string.pattern.base": "Location must be in a valid city format",
-      "any.required": "Location is required. Please provide a location in city format.",
+      "string.pattern.base": "Розташування має бути в дійсному форматі міста",
+      "any.required": "Необхідно вказати місцезнаходження. Будь ласка, вкажіть розташування у форматі міста.",
     })
     .required(),
 });

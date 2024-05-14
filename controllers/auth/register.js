@@ -16,7 +16,7 @@ const register = async (req, res) => {
     password: hashPassword,
     avatarURL:
       "https://thumbs.dreamstime.com/b/no-image-icon-vector-available-picture-symbol-isolated-white-background-suitable-user-interface-element-205805243.jpg",
-    date: "01-01-0001",
+    date: "01-01-2024",
     phone: "+380000000000",
     city: "Не вказано",
   });

@@ -2,6 +2,7 @@ const express = require("express");
 const ctrl = require("../../controllers/user");
 const { schemas } = require("../../schemas/user");
 const { validationMiddleware, authenticate, uploadMiddleware } = require("../../middleware");
+const { handleFileUpload } = require("../../middleware/uploadMiddleware");
 const router = express.Router();
 
 /**
@@ -84,6 +85,7 @@ const router = express.Router();
 router.patch(
   "/updateUser",
   authenticate,
+  handleFileUpload,
   // uploadMiddleware.single("image"),
   validationMiddleware(schemas.usersSchema),
   ctrl.updateUser

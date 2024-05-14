@@ -19,14 +19,18 @@ const handleFileUpload = async (req, res, next) => {
       const updatedSize = 288;
 
       if (err) {
+        console.error(err);
         return res.status(400).json({ error: err.message });
       }
 
-      // Access the buffer and process it with Jimp
+      if (!req?.file?.buffer) {
+        req.file = null;
+        return next();
+      }
+
       const buffer = req.file.buffer;
       const image = await Jimp.read(buffer);
 
-      // Perform your Jimp processing here (e.g., crop, resize, etc.)
       const minDimension = Math.min(image.bitmap.width, image.bitmap.height);
       const xOffset = (image.bitmap.width - minDimension) / 2;
       const yOffset = (image.bitmap.height - minDimension) / 2;
@@ -34,15 +38,13 @@ const handleFileUpload = async (req, res, next) => {
       const croppedImage = image.crop(xOffset, yOffset, minDimension, minDimension);
       const resizedImage = croppedImage.resize(updatedSize, updatedSize);
 
-      // Extract file extension
-      const fileExtension = path.extname(req.file.originalname);
+      // const fileExtension = path.extname(req.file.originalname);
 
-      // Save the processed image to the temp folder
-      const fileName = `edited_${req.file.filename}${fileExtension}`;
+      // const fileName = `edited_${req.file.originalname}${fileExtension}`;
+      const fileName = `edited_${req.file.originalname}`;
       const tempFilePath = path.join(tempDir, fileName);
       await resizedImage.writeAsync(tempFilePath);
 
-      // Update req.file with information about the edited image
       req.file = {
         ...req.file,
         originalname: fileName,
