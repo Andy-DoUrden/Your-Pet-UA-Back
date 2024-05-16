@@ -26,7 +26,7 @@ const addNotice = joi.object({
   }),
   location: joi
     .string()
-    .regex(/^([А-ЩЬЮЯҐЄIЇІІа-щьюяґєіїьі]+\s?){1,}$/iu)
+    .regex(/^([А-ЩЬЮЯҐЄІЇа-щьюяґєіїьі0-9'-]+\s?){1,}$/iu)
     .required()
     .messages({
       "string.pattern.base": "Розташування має бути в дійсному форматі міста",
