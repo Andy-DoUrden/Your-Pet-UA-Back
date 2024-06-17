@@ -29,7 +29,8 @@ const listNotices = async (req, res) => {
   }
 
   if (sex) {
-    queryObject.$and.push({ sex });
+    const localizedSex = sex === "male" ? "Ч" : "Ж";
+    queryObject.$and.push({ sex: localizedSex });
   }
 
   const totalCount = await Notice.countDocuments(queryObject);
